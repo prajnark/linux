@@ -218,6 +218,10 @@
 	status = "okay";
 };
 
+&spi2 {
+	status = "okay";
+};
+
 &syscontroller {
 	status = "okay";
 };

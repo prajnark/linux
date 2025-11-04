@@ -23,6 +23,32 @@
 		status = "disabled";
 	};
 
+	spi2: spi@40000500 {
+            compatible = "microchip,corespi-rtl-v5";
+            #address-cells = <1>;
+            #size-cells = <0>;
+            reg = <0x0 0x40000500 0x0 0x1000>;
+            interrupt-parent = <&plic>;
+            interrupts = <124>;
+            clocks = <&ccc_nw CLK_CCC_PLL0_OUT3>;
+            num-cs = <8>;
+            fifo-depth = <8>;
+            microchip,motorola-mode = <3>;
+            microchip,frame-size = <8>;
+            microchip,apb-datawidth = <8>;
+            microchip,ssel-active;
+			microchip,protocol-configuration = "motorola";
+ 
+            accelerometer@0 {
+                compatible = "adi,adxl345";
+                reg = <0>;
+                spi-cpol;
+                spi-cpha;
+                spi-max-frequency = <5000000>;  
+            };
+        };
+
+
 	ihc: mailbox {
 		compatible = "microchip,sbi-ipc";
 		interrupt-parent = <&plic>;
